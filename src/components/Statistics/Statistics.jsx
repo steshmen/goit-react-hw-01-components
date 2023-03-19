@@ -5,11 +5,11 @@ export const Statistics = ({ title, stats }) => {
     return (
         <section className={css.container}>
             {title && <h2 className={css.title}>{title}</h2>}
-            <ul className={css.statList}>{stats.map(item => {
+            <ul className={css.statList}>{stats.map(({id, label, percentage}) => {
                 return (
-                    <li className={css.statItem} key={item.id} style={{backgroundColor: getRandomHexColor()}}>
-                        <span className={css.label}>{item.label}</span>
-                        <span className={css.percentage}>{item.percentage}%</span>
+                    <li className={css.statItem} key={id} style={{backgroundColor: getRandomHexColor()}}>
+                        <span className={css.label}>{label}</span>
+                        <span className={css.percentage}>{percentage}%</span>
                     </li>
                 )
             })}</ul>
@@ -23,8 +23,8 @@ Statistics.propTypes = {
             id: PropTypes.string.isRequired,
             label: PropTypes.string.isRequired,
             percentage: PropTypes.number.isRequired
-        })
-    )
+        }).isRequired
+    ).isRequired
 }
 
 function getRandomHexColor() {
